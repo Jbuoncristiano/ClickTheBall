@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click the Ball</title>
+    <style>
+        #gameArea {
+            width: 300px;
+            height: 300px;
+            position: relative;
+            border: 1px solid black;
+        }
+
+        #ball {
+            width: 30px;
+            height: 30px;
+            background-color: red;
+            border-radius: 50%;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="gameArea">
+        <div id="ball"></div>
+    </div>
+    <p>Score: <span id="score">0</span></p>
+    <script>
+        const ball = document.getElementById('ball');
+        const gameArea = document.getElementById('gameArea');
+        const scoreElem = document.getElementById('score');
+        let score = 0;
+
+        ball.addEventListener('click', function() {
+            score++;
+            scoreElem.textContent = score;
+            moveBall();
+        });
+
+        function moveBall() {
+            const x = Math.random() * (gameArea.clientWidth - ball.clientWidth);
+            const y = Math.random() * (gameArea.clientHeight - ball.clientHeight);
+            ball.style.left = x + 'px';
+            ball.style.top = y + 'px';
+        }
+
+        moveBall();
+        setTimeout(() => {
+            alert('Game over! Your score is: ' + score);
+        }, 30000);
+    </script>
+</body>
+</html>
